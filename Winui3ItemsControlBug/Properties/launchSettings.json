@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Winui3ItemsControlBug (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Winui3ItemsControlBug (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
