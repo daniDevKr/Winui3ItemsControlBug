@@ -56,7 +56,7 @@ namespace Winui3ItemsControlBug
     public sealed partial class MainWindow : Window
     {
 
-       private ObservableCollection<User> Users = new ();
+       
 
         private Realm _db;
 
