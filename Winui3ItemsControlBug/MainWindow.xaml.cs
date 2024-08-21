@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -60,21 +61,29 @@ namespace Winui3ItemsControlBug
 
         private Realm _db;
 
-        private IQueryable<User> _users;
+    
+        private IRealmCollection<User> _users;
         public MainWindow()
         {
+           
             var cfg = new InMemoryConfiguration("realm_mem01");
 
             _db = Realm.GetInstance(cfg);
 
-            _users = _db.All<User>();
+            _users = _db.All<User>().AsRealmCollection();
 
+            _users.CollectionChanged += _users_CollectionChanged;
             this.InitializeComponent();
         }
 
-       
+        private void _users_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Debug.WriteLine("realm collection Changed");
+        }
+
         private async void ItemsControl1_Loaded(object sender, RoutedEventArgs e)
         {
+            
             await _db.WriteAsync( () =>
             {
                 _db.Add(new User("Jhon", "Red"));

@@ -11,7 +11,7 @@
     <StackPanel Padding="50">
 
         <TextBlock> Items:</TextBlock>
-        <ItemsControl x:Name="ItemsControl1" ItemsSource="{x:Bind _users}" Loaded="ItemsControl1_Loaded"/>
+        <ItemsControl x:Name="ItemsControl1" ItemsSource="{x:Bind _users, Mode=OneWay}" Loaded="ItemsControl1_Loaded"/>
       
     </StackPanel>
 </Window>
